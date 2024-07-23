@@ -4,9 +4,18 @@ import Timer from "./components/timer/Timer";
 import RefDom from "./components/ref/RefDom";
 import UseReducer from "./components/reducer/UseReducer";
 import Counter from "./components/reducer/Counter";
+import Name from "./redux/components/Name";
+import Details from "./redux/components/Details";
+import Nav from "./redux/components/Nav";
 function App() {
   return (
     <div className="app">
+      <Nav />
+      <Name />
+      <br />
+      <hr />
+      <Details />
+
       <Counter />
       <UseReducer />
       <RefDom />

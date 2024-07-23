@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+}
+.nav {
+  background-color: black;
+  display: flex;
+  height: 90px;
+  color: white;
+}
+.main {
+  background-color: lightgray;
+  padding: 30px;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.leftPanel {
+  width: 40%;
+}
+.rightPanel {
+  width: 60%;
+}
+.rightPanel a {
+  color: white;
+  text-decoration: none;
+  margin-right: 50px;
+  font-size: 60%;
+}
