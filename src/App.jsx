@@ -7,11 +7,15 @@ import Counter from "./components/reducer/Counter";
 import Name from "./redux/components/Name";
 import Details from "./redux/components/Details";
 import Nav from "./redux/components/Nav";
+import City from "./redux/components/City";
 function App() {
   return (
     <div className="app">
       <Nav />
-      <Name />
+      <div className="subAppContainer">
+        <Name />
+        <City />
+      </div>
       <br />
       <hr />
       <Details />

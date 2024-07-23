@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+.subAppContainer {
+  width: 800px;
+  display: flex;
+  justify-content: space-evenly;
+}
