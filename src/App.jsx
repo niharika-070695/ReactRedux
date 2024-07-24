@@ -8,17 +8,15 @@ import Name from "./redux/components/Name";
 import Details from "./redux/components/Details";
 import Nav from "./redux/components/Nav";
 import City from "./redux/components/City";
+import { Route, Routes } from "react-router-dom";
+import ReduxHome from "./redux/components/ReduxHome";
 function App() {
   return (
     <div className="app">
       <Nav />
-      <div className="subAppContainer">
-        <Name />
-        <City />
-      </div>
-      <br />
-      <hr />
-      <Details />
+      <Routes>
+        <Route path={"/redux"} element={<ReduxHome />} />
+      </Routes>
 
       <Counter />
       <UseReducer />
