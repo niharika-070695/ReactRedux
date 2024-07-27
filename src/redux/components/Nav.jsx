@@ -11,6 +11,9 @@ function nav() {
         <Link to="/redux" style={{ fontSize: 15 }}>
           Redux
         </Link>
+        <Link to="/allproducts" style={{ fontSize: 15 }}>
+          AllProducts
+        </Link>
       </div>
     </div>
   );

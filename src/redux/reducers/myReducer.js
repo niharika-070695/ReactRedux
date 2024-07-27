@@ -1,6 +1,7 @@
 const initialData = {
   name: "",
   city: "",
+  products: [],
 };
 const myReducer = (state = initialData, action) => {
   if (action.type === "NAME") {

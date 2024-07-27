@@ -10,12 +10,14 @@ import Nav from "./redux/components/Nav";
 import City from "./redux/components/City";
 import { Route, Routes } from "react-router-dom";
 import ReduxHome from "./redux/components/ReduxHome";
+import AllProducts from "./components/allproducts/AllProducts";
 function App() {
   return (
     <div className="app">
       <Nav />
       <Routes>
         <Route path={"/redux"} element={<ReduxHome />} />
+        <Route path={"/allProducts"} element={<AllProducts />} />
       </Routes>
 
       <Counter />
