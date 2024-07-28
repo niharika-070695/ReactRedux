@@ -1,17 +1,42 @@
-import React from "react";
+import { useState } from "react";
+import axios from "axios";
 
-function NewUser() {
+function NewUser({ getUsers }) {
+  let [newuser, setNewUser] = useState({
+    name: "",
+    city: "",
+  });
+  const getNewUser = () => {
+    console.log(newuser);
+    axios
+      .post("http://localhost:3000/result", newuser)
+      .then((res) => {
+        alert("Successfully new user created");
+        getUsers();
+      })
+      .catch((error) => {
+        alert("NewUser is not created");
+        console.log(error);
+      });
+  };
   return (
     <div style={{ padding: "50px" }}>
       <h2>New User</h2>
       <input
+        onChange={(event) => {
+          setNewUser({ ...newuser, name: event.target.value });
+        }}
         type="text"
         placeholder="username"
         style={{ margin: "10px 0px" }}
       />
       <br />
       <br />
-      <select>
+      <select
+        onChange={(event) => {
+          setNewUser({ ...newuser, city: event.target.value });
+        }}
+      >
         <option>Select City</option>
         <option>c1</option>
         <option>c2</option>
@@ -21,7 +46,7 @@ function NewUser() {
       </select>
       <br />
       <br />
-      <button>New User</button>
+      <button onClick={getNewUser}>New User</button>
     </div>
   );
 }

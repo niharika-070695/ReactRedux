@@ -12,23 +12,14 @@ import { Route, Routes } from "react-router-dom";
 import ReduxHome from "./redux/components/ReduxHome";
 import AllProducts from "./components/allproducts/AllProducts";
 import ProductDetails from "./components/product-details/ProductDetails";
-import Users from "./json-server/Users";
-import NewUser from "./json-server/NewUser";
+import UserHome from "./json-server/UserHome";
 function App() {
   return (
     <div className="app">
       <Nav />
       <Routes>
         <Route path={"/redux"} element={<ReduxHome />} />
-        <Route
-          path={"/jsonserver"}
-          element={
-            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-              <NewUser />
-              <Users />
-            </div>
-          }
-        ></Route>
+        <Route path={"/jsonserver"} element={<UserHome />}></Route>
         <Route path={"/allProducts"} element={<AllProducts />} />
         <Route path={"/productdetails/:id"} element={<ProductDetails />} />
       </Routes>

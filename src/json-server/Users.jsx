@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
-
-function Users() {
-  let [users, setUsers] = useState([]);
+function Users({ getUsers, users }) {
   useEffect(() => {
     getUsers();
   }, []);
-  const getUsers = () => {
+
+  const deleteUser = (id) => {
     axios
-      .get("http://localhost:3000/result")
+      .delete(`http://localhost:3000/result/${id}`)
       .then((res) => {
-        console.log(res.data);
-        setUsers(res.data);
+        alert("User deleted successfully");
+        getUsers();
       })
       .catch((error) => {
-        alert("something went wrong while accessing users");
+        alert("Failed to remove user");
         console.log(error);
       });
   };
@@ -43,7 +42,13 @@ function Users() {
                       <button>Edit</button>
                     </td>
                     <td>
-                      <button>Delete</button>
+                      <button
+                        onClick={() => {
+                          deleteUser(element.id);
+                        }}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 );
