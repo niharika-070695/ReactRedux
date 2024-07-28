@@ -11,6 +11,7 @@ import City from "./redux/components/City";
 import { Route, Routes } from "react-router-dom";
 import ReduxHome from "./redux/components/ReduxHome";
 import AllProducts from "./components/allproducts/AllProducts";
+import ProductDetails from "./components/product-details/ProductDetails";
 function App() {
   return (
     <div className="app">
@@ -18,8 +19,12 @@ function App() {
       <Routes>
         <Route path={"/redux"} element={<ReduxHome />} />
         <Route path={"/allProducts"} element={<AllProducts />} />
+        <Route path={"/productdetails/:id"} element={<ProductDetails />} />
       </Routes>
-
+      <br />
+      <br />
+      <br />
+      <hr />
       <Counter />
       <UseReducer />
       <RefDom />

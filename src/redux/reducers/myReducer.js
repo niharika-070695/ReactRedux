@@ -14,6 +14,11 @@ const myReducer = (state = initialData, action) => {
       ...state,
       city: action.cityName,
     };
+  } else if (action.type === "PRODUCTS") {
+    state = {
+      ...state,
+      products: action.payload,
+    };
   }
   return state;
 };

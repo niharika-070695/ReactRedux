@@ -1,17 +1,30 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./AllProducts.css";
 import Card from "../card/Card";
+import { useDispatch, useSelector } from "react-redux";
+import { productsAction } from "../../redux/actions/productsAction";
 function AllProducts() {
   let [allproducts, setAllProducts] = useState([]);
+  let dispatch = useDispatch();
+  let productsData = useSelector((storedata) => {
+    return storedata.products;
+  });
+  useEffect(() => {
+    if (productsData.length === 0) {
+      getProducts();
+    }
+  }, []);
   const getProducts = () => {
     var promiseObject = axios.get("https://fakestoreapi.com/products");
     promiseObject
       .then((response) => {
+        var action = productsAction(response.data);
+        dispatch(action);
+        console.log(action);
         console.log("then");
         console.log(response.data);
-        setAllProducts(response.data);
       })
       .catch((error) => {
         console.log("error");
@@ -28,11 +41,12 @@ function AllProducts() {
         functional components, which were previously only available in class
         components.
       </p>
-      <button onClick={getProducts}>Get Products</button>
+
       <div className="allProductsData">
-        {allproducts.map(function (element, index) {
+        {productsData.map(function (element, index) {
           return (
             <Card
+              id={element.id}
               image={element.image}
               title={element.title}
               price={element.price}
