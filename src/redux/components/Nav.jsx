@@ -14,6 +14,9 @@ function nav() {
         <Link to="/allproducts" style={{ fontSize: 15 }}>
           AllProducts
         </Link>
+        <Link to="/jsonserver" style={{ fontSize: 15 }}>
+          Users
+        </Link>
       </div>
     </div>
   );
