@@ -5,6 +5,11 @@ import axios from "axios";
 
 function UserHome() {
   let [users, setUsers] = useState([]);
+  let [isNewUser, setIsNewUser] = useState(true);
+  let [newuser, setNewUser] = useState({
+    name: "",
+    city: "",
+  });
   const getUsers = () => {
     axios
       .get("http://localhost:3000/result")
@@ -20,8 +25,19 @@ function UserHome() {
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-        <NewUser getUsers={getUsers} />
-        <Users getUsers={getUsers} users={users} />
+        <NewUser
+          getUsers={getUsers}
+          isNewUser={isNewUser}
+          setIsNewUser={setIsNewUser}
+          newuser={newuser}
+          setNewUser={setNewUser}
+        />
+        <Users
+          setNewUser={setNewUser}
+          setIsNewUser={setIsNewUser}
+          getUsers={getUsers}
+          users={users}
+        />
       </div>
     </div>
   );

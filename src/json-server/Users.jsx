@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import axios from "axios";
-function Users({ getUsers, users }) {
+function Users({ getUsers, users, setIsNewUser, setNewUser }) {
   useEffect(() => {
     getUsers();
   }, []);
@@ -16,6 +16,11 @@ function Users({ getUsers, users }) {
         alert("Failed to remove user");
         console.log(error);
       });
+  };
+
+  const updateUser = (element) => {
+    setIsNewUser(false);
+    setNewUser(element);
   };
   return (
     <div style={{ marginTop: "50px auto", width: "500px" }}>
@@ -39,7 +44,13 @@ function Users({ getUsers, users }) {
                     <td>{element.name}</td>
                     <td>{element.city}</td>
                     <td>
-                      <button>Edit</button>
+                      <button
+                        onClick={() => {
+                          updateUser(element);
+                        }}
+                      >
+                        Edit
+                      </button>
                     </td>
                     <td>
                       <button

@@ -1,18 +1,35 @@
 import { useState } from "react";
 import axios from "axios";
 
-function NewUser({ getUsers }) {
-  let [newuser, setNewUser] = useState({
-    name: "",
-    city: "",
-  });
-  const getNewUser = () => {
+function NewUser({ getUsers, isNewUser, newuser, setNewUser, setIsNewUser }) {
+  const updateUser = () => {
+    axios
+      .put(`http://localhost:3000/result/${newuser.id}`, newuser)
+      .then((res) => {
+        alert("user Updated");
+        getUsers();
+        setNewUser({
+          name: "",
+          city: "",
+        });
+        setIsNewUser(true);
+      })
+      .catch((error) => {
+        alert("Went something wrong while updating User");
+        console.log(error);
+      });
+  };
+  const addNewUser = () => {
     console.log(newuser);
     axios
       .post("http://localhost:3000/result", newuser)
       .then((res) => {
         alert("Successfully new user created");
         getUsers();
+        setNewUser({
+          name: "",
+          city: "",
+        });
       })
       .catch((error) => {
         alert("NewUser is not created");
@@ -21,8 +38,9 @@ function NewUser({ getUsers }) {
   };
   return (
     <div style={{ padding: "50px" }}>
-      <h2>New User</h2>
+      <h2>{isNewUser ? "New User" : "Update User"}</h2>
       <input
+        value={newuser.name}
         onChange={(event) => {
           setNewUser({ ...newuser, name: event.target.value });
         }}
@@ -33,6 +51,7 @@ function NewUser({ getUsers }) {
       <br />
       <br />
       <select
+        value={newuser.city}
         onChange={(event) => {
           setNewUser({ ...newuser, city: event.target.value });
         }}
@@ -46,7 +65,9 @@ function NewUser({ getUsers }) {
       </select>
       <br />
       <br />
-      <button onClick={getNewUser}>New User</button>
+      <button onClick={isNewUser ? addNewUser : updateUser}>
+        {isNewUser ? "New User" : "Update User"}
+      </button>
     </div>
   );
 }
